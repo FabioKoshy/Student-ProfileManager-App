@@ -1,76 +1,97 @@
 package com.example.profilemanager;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.database.Cursor;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
-
+import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
-
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-
 import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
 
-public class MainActivity extends AppCompatActivity {
-
-    private DatabaseHelper dbHelper;
-    private ListView lvProfiles;
-    private boolean sortByID = true;
-    private HashMap<Integer, Integer> profileIDMap; // Map ListView positions to Profile IDs
+public class MainActivity extends AppCompatActivity implements InsertProfileDialogFragment.OnProfileAddedListener {
+    private TextView textView; // Kept as field for use in loadProfiles()
+    private ArrayAdapter<String> adapter;
+    private ArrayList<String> profiles;
+    private String sortMode;
+    private SharedPreferences prefs;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        dbHelper = new DatabaseHelper(this);
-        lvProfiles = findViewById(R.id.lv_profiles);
-        FloatingActionButton fabAddProfile = findViewById(R.id.fab_add_profile);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null) {
+            getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+            getSupportActionBar().setHomeButtonEnabled(false);
+            getSupportActionBar().setTitle(R.string.app_name);
+        }
 
-        loadProfiles();
+        textView = findViewById(R.id.textView);
+        ListView listView = findViewById(R.id.listView);
 
-        lvProfiles.setOnItemClickListener((parent, view, position, id) -> {
-            int profileID = extractProfileID(position);
-            if (profileID != -1) {
-                Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
-                intent.putExtra("profileID", profileID);
-                startActivity(intent);
+        DatabaseHelper dbHelper = new DatabaseHelper(this);
+        profiles = new ArrayList<>();
+        prefs = getSharedPreferences("settings", MODE_PRIVATE);
+        sortMode = prefs.getBoolean("sortById", true) ? "By ID" : "By Name";
+
+        loadProfiles(dbHelper);
+
+        adapter = new ArrayAdapter<>(this, R.layout.list_item_profile, R.id.profileInfo, profiles) {
+            @NonNull
+            @Override
+            public View getView(int position, View convertView, @NonNull ViewGroup parent) {
+                View view = super.getView(position, convertView, parent);
+                TextView lineNumber = view.findViewById(R.id.lineNumber);
+                lineNumber.setText(getString(R.string.line_number_format, position + 1));
+                return view;
             }
+        };
+        listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener((parent, view, position, id) -> {
+            int profileId = dbHelper.getProfileIdByPosition(position, sortMode);
+            Intent intent = new Intent(MainActivity.this, ProfileActivity.class);
+            intent.putExtra("PROFILE_ID", profileId);
+            startActivity(intent);
         });
 
-        fabAddProfile.setOnClickListener(v -> {
+        FloatingActionButton fab = findViewById(R.id.addProfileButton);
+        fab.setOnClickListener(v -> {
             InsertProfileDialogFragment dialog = new InsertProfileDialogFragment();
             dialog.show(getSupportFragmentManager(), "InsertProfileDialog");
         });
     }
 
-    private void loadProfiles() {
-        List<String> profilesList = new ArrayList<>();
-        profileIDMap = new HashMap<>();
-
-        List<String[]> profiles = dbHelper.getAllProfiles(sortByID);
-
-        int counter = 1;
-        for (String[] profile : profiles) {
-            profileIDMap.put(counter - 1, Integer.parseInt(profile[2])); // Store profile ID
-            profilesList.add(counter + ". " + profile[0] + ", " + profile[1]); // "Surname, Name"
-            counter++;
-        }
-
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, profilesList);
-        lvProfiles.setAdapter(adapter);
+    @Override
+    public void onProfileAdded() {
+        loadProfiles(new DatabaseHelper(this));
     }
 
-    private int extractProfileID(int position) {
-        return profileIDMap.getOrDefault(position, -1);
+    private void loadProfiles(DatabaseHelper dbHelper) {
+        profiles.clear();
+        Cursor cursor = dbHelper.getProfiles(sortMode);
+        int totalProfiles = cursor.getCount();
+        textView.setText(getString(R.string.profiles_summary, totalProfiles, sortMode));
+
+        while (cursor.moveToNext()) {
+            String profile = "By ID".equals(sortMode) ?
+                    String.valueOf(cursor.getInt(0)) :
+                    cursor.getString(1) + ", " + cursor.getString(2);
+            profiles.add(profile);
+        }
+        cursor.close();
+        if (adapter != null) adapter.notifyDataSetChanged();
     }
 
     @Override
@@ -80,10 +101,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     @Override
-    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
-        if (item.getItemId() == R.id.action_toggle_sort) {
-            sortByID = !sortByID;
-            loadProfiles();
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == R.id.toggle_sort) {
+            sortMode = "By ID".equals(sortMode) ? "By Name" : "By ID";
+            SharedPreferences.Editor editor = prefs.edit();
+            editor.putBoolean("sortById", "By ID".equals(sortMode));
+            editor.apply();
+            loadProfiles(new DatabaseHelper(this));
             return true;
         }
         return super.onOptionsItemSelected(item);

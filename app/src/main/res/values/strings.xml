@@ -1,3 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">ProfileManager</string>
+    <string name="app_name">Profile Manager</string>
+    <string name="total_profiles_0">Profiles: 0</string>
+    <string name="add_profile">Add Profile</string>
+    <string name="line_number_format">%d.</string>
+    <string name="profiles_summary">Profiles: %d, Sort Mode: %s</string>
+    <string name="toggle_sort">Toggle Sort</string>
+    <string name="profile_details_title">Profile Details</string>
+    <string name="profile_details">Profile Details</string>
+    <string name="name_label">Name:</string>
+    <string name="surname_label">Surname:</string>
+    <string name="profile_id_label">Profile ID:</string>
+    <string name="gpa_label">GPA:</string>
+    <string name="profile_created">Profile created: %s</string>
+    <string name="access_history">Access History</string>
+    <string name="delete_profile">Delete Profile</string>
+    <string name="enter_profile_details">Enter Profile Details</string>
+    <string name="first_name_hint">First Name</string>
+    <string name="last_name_hint">Last Name</string>
+    <string name="profile_id_hint">Profile ID (8 digits)</string>
+    <string name="gpa_hint">GPA (0 to 4.3)</string>
+    <string name="cancel">Cancel</string>
+    <string name="save">Save</string>
+    <string name="profile_not_found">Profile not found</string>
 </resources>

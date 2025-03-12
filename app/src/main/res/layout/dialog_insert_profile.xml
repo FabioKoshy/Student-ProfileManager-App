@@ -2,61 +2,77 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:minWidth="300dp"
     android:orientation="vertical"
     android:padding="16dp">
 
-    <!-- Name -->
+    <TextView
+        android:text="@string/enter_profile_details"
+        android:textSize="18sp"
+        android:textStyle="bold"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
     <EditText
-        android:id="@+id/et_profile_name"
+        android:id="@+id/editName"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter Name" />
+        android:hint="@string/first_name_hint"
+        android:inputType="textPersonName"
+        android:textIsSelectable="false"
+        android:importantForAutofill="no"/>
 
-    <!-- Surname -->
     <EditText
-        android:id="@+id/et_profile_surname"
+        android:id="@+id/editSurname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter Surname" />
+        android:hint="@string/last_name_hint"
+        android:inputType="textPersonName"
+        android:textIsSelectable="false"
+        android:importantForAutofill="no"/>
 
-    <!-- Profile ID -->
     <EditText
-        android:id="@+id/et_profile_id"
+        android:id="@+id/editId"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter Student ID"
-        android:inputType="number" />
+        android:hint="@string/profile_id_hint"
+        android:inputType="number"
+        android:maxLength="8"
+        android:textIsSelectable="false"
+        android:importantForAutofill="no"/>
 
-    <!-- GPA -->
     <EditText
-        android:id="@+id/et_profile_gpa"
+        android:id="@+id/editGpa"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Enter GPA (0 - 4.3)"
-        android:inputType="numberDecimal" />
+        android:hint="@string/gpa_hint"
+        android:inputType="numberDecimal"
+        android:textIsSelectable="false"
+        android:importantForAutofill="no"/>
 
-    <!-- Save & Cancel Buttons -->
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
+        android:layout_marginTop="16dp"
         android:gravity="end"
-        android:paddingTop="8dp">
+        style="?android:attr/buttonBarStyle">
 
         <Button
-            android:id="@+id/btn_cancel"
-            android:layout_width="0dp"
-            android:layout_weight="1"
+            android:id="@+id/cancelButton"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Cancel" />
+            android:minWidth="80dp"
+            android:text="@string/cancel"
+            android:layout_marginEnd="8dp"
+            style="?android:attr/buttonBarButtonStyle"/>
 
         <Button
-            android:id="@+id/btn_save"
-            android:layout_width="0dp"
-            android:layout_weight="1"
+            android:id="@+id/saveButton"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Save" />
-
+            android:minWidth="80dp"
+            android:text="@string/save"
+            style="?android:attr/buttonBarButtonStyle"/>
     </LinearLayout>
-
 </LinearLayout>
