@@ -164,17 +164,10 @@ The APK will be available in `app/build/outputs/apk/release/`. You need to sign 
 
 ## 📝 License
 This project is licensed under the **MIT License**.
-
-```
-MIT License
-
-Permission is hereby granted, free of charge, to any person obtaining a copy of this software...
-```
-
 ---
 
 ## 📬 Contact
-For any questions or feedback, reach out via **GitHub Issues**.
+For any questions or feedback, reach out via **phoenixfabio7@gmail.com**.
 
 🚀 **Happy Coding!**
 
