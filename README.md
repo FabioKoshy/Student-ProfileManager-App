@@ -134,10 +134,6 @@ The app follows the **Model-View-Controller (MVC)** pattern:
 
 ---
 
-## 📝 License
-This project is licensed under the **MIT License**.
----
-
 ## 📬 Contact
 For any questions or feedback, reach out via **phoenixfabio7@gmail.com**.
 
