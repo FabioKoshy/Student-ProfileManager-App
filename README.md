@@ -63,7 +63,7 @@ No need to install anything! You can test the app directly in your browser:
 
 ---
 
-## 🎮 Usage Guide
+## Usage Guide
 
 ### **1️⃣ Main Screen (Profile List)**
 - Displays all profiles, numbered.
