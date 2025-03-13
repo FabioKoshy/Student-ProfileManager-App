@@ -122,7 +122,7 @@ The app follows the **Model-View-Controller (MVC)** pattern:
 
 | Main Screen | Add Profile | Profile Details |
 |------------|------------|----------------|
-| ![Main UI](<img width="302" alt="Main Screen" src="https://github.com/user-attachments/assets/65d14f93-afd2-4995-95eb-779080fb7efd" />) | ![Profile Entry (<img width="302" alt="Add Profile " src="https://github.com/user-attachments/assets/f9470be7-e26c-4e4e-b1c6-66393ebd0283" />) | ![Profile Info](<img width="302" alt="Profile Details" src="https://github.com/user-attachments/assets/64a5f2b2-4787-425a-8cd9-30cfa72e49e8" />) |
+| ![Main UI](screenshots/MainScreen.png) | ![Profile Entry (screenshots/AddProfile.png) | ![Profile Info](screenshots/ProfileDetails.png) |
 
 ---
 
