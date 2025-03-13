@@ -57,12 +57,8 @@ Ensure **USB Debugging** is enabled on your device.
 ---
 
 ## 🚀 Try It Online (Appetize.io)
-You can run the app online without installing it on your device.
-
-1. Build and generate the **APK**.
-2. Upload it to **[Appetize.io](https://appetize.io/)**.
-3. Share or access the provided **public URL** to run the app in your browser.
-
+No need to install anything! You can test the app directly in your browser:
+👉 **[Click here to run the app](https://appetize.io/app/b_tdsgjgpqun2nmohgfteqmqimnm)**
 ---
 
 ## 🎮 Usage Guide
