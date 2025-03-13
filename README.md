@@ -122,7 +122,7 @@ The app follows the **Model-View-Controller (MVC)** pattern:
 
 | Main Screen | Add Profile | Profile Details |
 |------------|------------|----------------|
-| ![Main UI](screenshots/MainScreen.png) | ![Profile Entry (screenshots/AddProfile.png) | ![Profile Info](screenshots/ProfileDetails.png) |
+| ![Main UI](screenshots/MainScreen.png) | ![Profile UI](screenshots/AddProfile.png)  | ![Profile Info](screenshots/ProfileDetails.png) |
 
 ---
 
