@@ -129,7 +129,6 @@ The app follows the **Model-View-Controller (MVC)** pattern:
 ## 📌 Technologies Used
 
 - **Android SDK** (Java)
-- **SQLite Database** (Persistent Storage)
 - **Material Design UI**
 - **AndroidX Libraries** (AppCompat, RecyclerView, ConstraintLayout)
 
