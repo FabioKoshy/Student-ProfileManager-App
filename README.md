@@ -135,31 +135,6 @@ The app follows the **Model-View-Controller (MVC)** pattern:
 
 ---
 
-## 📦 Building the APK
-
-### **1️⃣ Debug APK**
-```bash
-./gradlew assembleDebug
-```
-APK will be available in `app/build/outputs/apk/debug/`.
-
-### **2️⃣ Release APK (Signed)**
-```bash
-./gradlew assembleRelease
-```
-The APK will be available in `app/build/outputs/apk/release/`. You need to sign it manually.
-
----
-
-## 🚀 Deploy to Appetize.io
-
-1. **Generate an APK** using the steps above.
-2. Go to **[Appetize.io](https://appetize.io/)**.
-3. Upload the APK.
-4. Get a **public link** to test or share your app online.
-
----
-
 ## 📝 License
 This project is licensed under the **MIT License**.
 ---
