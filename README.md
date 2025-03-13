@@ -58,7 +58,6 @@ Ensure **USB Debugging** is enabled on your device.
 
 ## 🚀 Try It Online (Appetize.io)
 No need to install anything! You can test the app directly in your browser:
-
 👉 **[Click here to run the app](https://appetize.io/app/b_tdsgjgpqun2nmohgfteqmqimnm)**
 ---
 
@@ -121,7 +120,7 @@ The app follows the **Model-View-Controller (MVC)** pattern:
 
 | Main Screen | Add Profile | Profile Details |
 |------------|------------|----------------|
-| ![Main UI]() | ![Profile Entry]() | ![Profile Info]() |
+| ![Main UI](screenshots/MainScreen.png) | ![Profile Entry](screenshots/AddProfile.png) | ![Profile Info](screenshots/ProfileDetails.png) |
 
 ---
 
